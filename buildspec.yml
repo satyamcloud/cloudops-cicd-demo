@@ -1,0 +1,23 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      python: 3.12
+    commands:
+      - echo "Installing Python environment"
+  pre_build:
+    commands:
+      - echo "Starting automated tests"
+      - python -m unittest test_app.py -v
+  build:
+    commands:
+      - echo "Building CloudOps application"
+      - python app.py
+  post_build:
+    commands:
+      - echo "Build completed successfully"
+artifacts:
+  files:
+    - app.py
+    - test_app.py
+  name: cloudops-build-artifact
